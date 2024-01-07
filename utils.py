@@ -11,7 +11,8 @@ from pdfminer.high_level import extract_text # extract pdf
 import pprint # pretty printer
 from termcolor import colored # To color printed text
 import sqlite3
-from typing import Optional
+import shutil # Move files
+# from typing import Optional # Specify optional data type in the function arguments
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -71,6 +72,8 @@ def datasetup_proxy(json_path):
 def load_data(data_path: str = 'data'
               , csv_file: str = 'carte.csv'
               , json_file: str = 'datasetup.json'
+              , credit_card_folders: list = ['paolo', 'gunda']
+              , bank_account_folders: list = ['conto']
               , with_update: bool = False
               , in_place: bool = False
               , save_to_sql: bool = False) -> pd.DataFrame:
@@ -85,6 +88,8 @@ def load_data(data_path: str = 'data'
         data_path (str): The path to the directory containing the data files.
         csv_file (str): The name of the csv file
         json_file (str): The name of the json file
+        credit_card_folders (list of str): the folders with credit card files (pdf)
+        bank_account_folders (list of str): the folders with bank account files (pdf, xlsx)
         with_update (bool): Flag to update the data with new PDF files.
         in_place (bool): Flag to update the CSV file in place.
         save_to_sql (bool): Flag to save the data to an SQLite database.
@@ -101,6 +106,12 @@ def load_data(data_path: str = 'data'
         assert os.path.exists(data_path), f"data_path {data_path} does not exist."
         assert os.path.exists(os.path.join(data_path, csv_file)), f"CSV file does not exist."
         assert os.path.exists(os.path.join(data_path, json_file)), f"JSON file does not exist."
+        for fold in credit_card_folders:
+            assert os.path.exists(os.path.join(data_path, fold))\
+                , f"{fold} does not exist under {data_path}."
+        for fold in bank_account_folders:
+            assert os.path.exists(os.path.join(data_path, fold))\
+                , f"{fold} does not exist under {data_path}."
         assert isinstance(with_update, bool), 'with_update must be a boolean value'
         assert isinstance(in_place, bool), 'in_place must be a boolean value'
         assert isinstance(save_to_sql, bool), 'save_to_sql must be a boolean value'
@@ -155,7 +166,7 @@ def load_data(data_path: str = 'data'
         
             return result
 
-        def extract_credit_card_data(data_path: str):
+        def extract_credit_card_data(data_path: str, credit_card_folders: list):
             """
             Extract credit card transactions from PDF files in specified folders.
         
@@ -163,6 +174,10 @@ def load_data(data_path: str = 'data'
             -----------
             data_path : str
                 Path to the main data directory.
+
+            credit_card_folders (list of str): 
+                the folders with credit card files (pdf)
+
             Returns:
             --------
             pd.DataFrame
@@ -175,16 +190,16 @@ def load_data(data_path: str = 'data'
 
                 df_list = []  # List to hold individual DataFrames for each file
             
-                for d in ['paolo', 'gunda']:
-                    folder_path = os.path.join(data_path, d)
+                for folder_name in credit_card_folders:
+                    folder_path = os.path.join(data_path, folder_name)
                     
                     # Filter out PDF files in the folder
                     file_type = '.pdf'
                     files_pdf = [f for f in os.listdir(folder_path) if f.endswith(file_type)]
                     
-                    for file in files_pdf:
+                    for file_name in files_pdf:
                         # Extract text from PDF
-                        text = extract_text(os.path.join(folder_path, file))
+                        text = extract_text(os.path.join(folder_path, file_name))
                         # Regex pattern to extract data
                         pattern = re.compile(r'(\d{2}/\d{2}/\d{4})\s(\d{2}/\d{2}/\d{4})\s(.+)')
                         matches = pattern.findall(text)
@@ -217,8 +232,8 @@ def load_data(data_path: str = 'data'
                             'data_registrazione': data_2,
                             'descrizione': descrizione,
                             'importo': importo,
-                            'file': file,
-                            'titolare': d
+                            'file': file_name,
+                            'titolare': folder_name
                         })
             
                         # Convert date columns to datetime
@@ -243,7 +258,7 @@ def load_data(data_path: str = 'data'
                 return pd.DataFrame(columns=COLUMNS), False
 
 
-        def parse_bank_data(data_path: str):
+        def parse_bank_data(data_path: str, bank_account_folders: list):
             """
             Parse bank account data from Excel files in the specified folder.
         
@@ -251,6 +266,8 @@ def load_data(data_path: str = 'data'
             -----------
             data_path : str
                 Path to the data directory.
+            bank_account_folders (list of str): 
+                the folders with bank account files (pdf, xlsx)
         
             Returns:
             --------
@@ -263,58 +280,58 @@ def load_data(data_path: str = 'data'
             try:
 
                 df_list = []  # List to hold individual DataFrames for each file
-                d = 'conto' # hard coded folder name
-            
-                folder_path = os.path.join(data_path, d)
                 
-                # Filter out Excel files in the folder
-                file_type = '.xlsx'
-                files_excel = [f for f in os.listdir(folder_path) if f.endswith(file_type)]
+                for folder_name in bank_account_folders:
+                    folder_path = os.path.join(data_path, folder_name)
                 
-                for file in files_excel:
-                    # Read Excel file into a DataFrame
-                    df_temp = pd.read_excel(os.path.join(folder_path, file))
+                    # Filter out Excel files in the folder/s
+                    file_type = '.xlsx'
+                    files_excel = [f for f in os.listdir(folder_path) if f.endswith(file_type)]
                     
-                    # Clean and standardize column names
-                    df_temp.columns = [c.replace(' / ', ' ').replace(' ', '_').lower() for c in df_temp.columns]
-                    
-                    # Drop unnecessary columns
-                    df_temp.drop(['canale', 'divisa'], axis=1, inplace=True)
-                    
-                    # Rename columns
-                    df_temp.rename(columns={
-                        'data_contabile': 'data_acquisto',
-                        'data_valuta': 'data_registrazione',
-                        'causale_descrizione': 'descrizione'
-                    }, inplace=True)
-                    
-                    # Reorder columns
-                    df_temp = df_temp.reindex(['data_acquisto', 'data_registrazione', 'descrizione', 'importo'], axis=1)
-                    
-                    # Append additional columns
-                    df_temp['file'] = file
-                    df_temp['titolare'] = d
-                    
-                    # Filter out rows related to monthly payments and positive transfers
-                    df_temp = df_temp[~df_temp.descrizione.str.contains('cartimpronta', na=False)]
-
-                    df_temp = df_temp[df_temp.importo <= 0]
-                    
-                    # Convert date columns to datetime
-                    df_temp['data_acquisto'] = pd.to_datetime(df_temp['data_acquisto'], format='%Y-%m-%d')
-                    df_temp['data_registrazione'] = pd.to_datetime(df_temp['data_registrazione'], format='%Y-%m-%d')
-                    
-                    # Make 'importo' positive for consistency
-                    df_temp['importo'] = df_temp['importo'].abs()
+                    for file_name in files_excel:
+                        # Read Excel file into a DataFrame
+                        df_temp = pd.read_excel(os.path.join(folder_path, file_name))
+                        
+                        # Clean and standardize column names
+                        df_temp.columns = [c.replace(' / ', ' ').replace(' ', '_').lower() for c in df_temp.columns]
+                        
+                        # Drop unnecessary columns
+                        df_temp.drop(['canale', 'divisa'], axis=1, inplace=True)
+                        
+                        # Rename columns
+                        df_temp.rename(columns={
+                            'data_contabile': 'data_acquisto',
+                            'data_valuta': 'data_registrazione',
+                            'causale_descrizione': 'descrizione'
+                        }, inplace=True)
+                        
+                        # Reorder columns
+                        df_temp = df_temp.reindex(['data_acquisto', 'data_registrazione', 'descrizione', 'importo'], axis=1)
+                        
+                        # Append additional columns
+                        df_temp['file'] = file_name
+                        df_temp['titolare'] = folder_name
+                        
+                        # Filter out rows related to monthly payments and positive transfers
+                        df_temp = df_temp[~df_temp.descrizione.str.contains('cartimpronta', na=False)]
     
-                    if not df_temp.empty:
-                        df_list.append(df_temp)
-                    print('.', end='')
-            
-                # Concatenate all individual DataFrames into one
-                if df_list:
-                    return pd.concat(df_list, ignore_index=True), True
-                return pd.DataFrame(columns=COLUMNS), True
+                        df_temp = df_temp[df_temp.importo <= 0]
+                        
+                        # Convert date columns to datetime
+                        df_temp['data_acquisto'] = pd.to_datetime(df_temp['data_acquisto'], format='%Y-%m-%d')
+                        df_temp['data_registrazione'] = pd.to_datetime(df_temp['data_registrazione'], format='%Y-%m-%d')
+                        
+                        # Make 'importo' positive for consistency
+                        df_temp['importo'] = df_temp['importo'].abs()
+        
+                        if not df_temp.empty:
+                            df_list.append(df_temp)
+                        print('.', end='')
+                
+                    # Concatenate all individual DataFrames into one
+                    if df_list:
+                        return pd.concat(df_list, ignore_index=True), True
+                    return pd.DataFrame(columns=COLUMNS), True
 
             except Exception as e:
                 print(f'error \"{e}\" during the update of the \"{file_type}\" files'
@@ -322,7 +339,7 @@ def load_data(data_path: str = 'data'
                 return pd.DataFrame(columns=COLUMNS), False
 
         
-        def extract_bank_data(data_path: str):
+        def extract_bank_data(data_path: str, bank_account_folders: list):
             """
             Parse all PDF files in the specified directory.
         
@@ -330,6 +347,8 @@ def load_data(data_path: str = 'data'
             -----------
             data_path : str
                 Path to the data directory.
+            bank_account_folders (list of str): 
+                the folders with bank account files (pdf, xlsx)
         
             Returns:
             --------
@@ -341,7 +360,7 @@ def load_data(data_path: str = 'data'
 
             try:
 
-                def process_pdf_file(data_path: str, d: str, file: str):
+                def process_pdf_file(data_path: str, folder_name: str, file_name: str):
                     """
                     Process a single PDF file to extract relevant data.
                 
@@ -349,7 +368,10 @@ def load_data(data_path: str = 'data'
                     -----------
                     data_path : str
                         Path to the data directory.
-                
+                    folder_name: str
+                        Name of the folder.
+                    file_name: str
+                        Name of the file.
                     Returns:
                     --------
                     pd.DataFrame or None
@@ -357,7 +379,7 @@ def load_data(data_path: str = 'data'
                     """
     
                     # extract a dataframe for each page
-                    tables = camelot.read_pdf(os.path.join(data_path, d, file), flavor='stream', pages='all')
+                    tables = camelot.read_pdf(os.path.join(data_path, folder_name, file_name), flavor='stream', pages='all')
                     processed_dfs = []
                 
                     # process the dataframes as needed
@@ -382,8 +404,8 @@ def load_data(data_path: str = 'data'
                             # updating the sort order of the columns to match the history df
                             df_temp = df_temp.reindex(['data_acquisto', 'data_registrazione', 'descrizione', 'importo'], axis=1)
                             # create columns for file and titolare
-                            df_temp['file'] = file
-                            df_temp['titolare'] = d
+                            df_temp['file'] = file_name
+                            df_temp['titolare'] = folder_name
                             # remove rows which concern monthly payments
                             df_temp = df_temp.drop(df_temp.loc[df_temp.descrizione.str.contains('CARTIMPRONTA')].index, axis=0)
                             # fixing a specific data problem
@@ -407,22 +429,23 @@ def load_data(data_path: str = 'data'
                     return pd.DataFrame(columns=COLUMNS)
     
     
-                d = 'conto' # hard coded folder name
-                # Filter out pdf files in the folder
-                file_type = '.pdf'
-                files_pdf = [f for f in os.listdir(os.path.join(data_path, d)) if re.search(file_type, f)]
-                dfs = []
-            
-                # Process each file and append the data
-                for file in files_pdf:
-                    processed_df = process_pdf_file(data_path, d, file)
-                    if not processed_df.empty:
-                        dfs.append(processed_df)
-                    print('.', end='')
-    
-                if dfs:
-                    return pd.concat(dfs, ignore_index=True), True
-                return pd.DataFrame(columns=COLUMNS), True
+                for folder_name in bank_account_folders:
+                    folder_path = os.path.join(data_path, folder_name)
+                    # Filter out pdf files in the folder/s
+                    file_type = '.pdf'
+                    files_pdf = [f for f in os.listdir(folder_path) if re.search(file_type, f)]
+                    dfs = []
+                
+                    # Process each file and append the data
+                    for file_name in files_pdf:
+                        processed_df = process_pdf_file(data_path, folder_name, file_name)
+                        if not processed_df.empty:
+                            dfs.append(processed_df)
+                        print('.', end='')
+        
+                    if dfs:
+                        return pd.concat(dfs, ignore_index=True), True
+                    return pd.DataFrame(columns=COLUMNS), True
 
             except Exception as e:
                 print(f'error \"{e}\" during the update of the \"{file_type}\" files'
@@ -430,13 +453,13 @@ def load_data(data_path: str = 'data'
                 return pd.DataFrame(columns=COLUMNS), False
 
         # Calling the functions in sequence to stop exection on error
-        extract_credit_card_df, success = extract_credit_card_data(data_path)
+        extract_credit_card_df, success = extract_credit_card_data(data_path, credit_card_folders)
         if not success:
             return pd.DataFrame(columns=COLUMNS)
-        parse_bank_df, success = parse_bank_data(data_path)
+        parse_bank_df, success = parse_bank_data(data_path, bank_account_folders)
         if not success:
             return pd.DataFrame(columns=COLUMNS)
-        extract_bank_df, success = extract_bank_data(data_path)
+        extract_bank_df, success = extract_bank_data(data_path, bank_account_folders)
         if not success:
             return pd.DataFrame(columns=COLUMNS)
 
@@ -477,8 +500,10 @@ def load_data(data_path: str = 'data'
             """
 
             try:
+                # Implement the regex to replace the descriptions in find_descr with replace_descr
+                find_descr_re = ['.*' + desc + '.*' for desc in find_descr]
                 df['descrizione_standardizzata'] = df.descrizione.replace(
-                    find_descr, replace_descr, regex=True)
+                    find_descr_re, replace_descr, regex=True)
             except Exception as e:
                 print(f'Error \"{e}\" during the update of descrizione_standardizzata\nRolling back\n')
                 return pd.DataFrame(columns=df.columns)
@@ -606,12 +631,57 @@ def load_data(data_path: str = 'data'
         # Reset the index of the DataFrame
         df.reset_index(drop=True, inplace=True)
 
-    # Overwrite the CSV file if in_place is True and df hasn't failed before
+    # Overwrite the CSV file if in_place is True and df hasn't failed before.
+    # Move the pdf/xlsx files in the subfolders under the staging directory.
     if in_place and not df.empty:
+
+        def move_files_to_staging(directory: str, staging: str = 'staging'):
+            """
+            Move all '.pdf' and '.xlsx' files within the 1st level of subfolders 
+            (except the 'staging' subfolder) to corresponding subfolders under 'staging'.
+            
+            Args:
+            - directory (str): Path to the directory containing the subfolders.
+            - staging (str): The staging folder.
+            """
+
+            user_input = input(f"Move {file_path} to {new_file_path}? (y/n): ").strip().lower()
+            if user_input == 'y':
+
+                print(f'Moving files to {staging}')
+
+                staging_directory = os.path.join(directory, staging)
+            
+                # Ensure the 'staging' directory exists
+                if not os.path.exists(staging_directory):
+                    os.makedirs(staging_directory)
+            
+                for root, dirs, files in os.walk(directory):
+                    # Skip the root directory itself and the 'staging' subdirectory
+                    if root != directory and staging not in root:
+                        # Extract the subfolder name relative to the main directory
+                        relative_subfolder = os.path.relpath(root, directory)
+                        
+                        # Create the same subfolder under 'staging' if it doesn't exist
+                        staging_subfolder = os.path.join(staging_directory, relative_subfolder)
+                        if not os.path.exists(staging_subfolder):
+                            os.makedirs(staging_subfolder)
+                        
+                        # Move files ending with '.pdf' or '.xlsx' to the staging subfolder
+                        for file in files:
+                            file_path = os.path.join(root, file)
+                            if file.endswith('.pdf') or file.endswith('.xlsx'):
+                                new_file_path = os.path.join(staging_subfolder, file)
+                                shutil.move(file_path, new_file_path)
+                                print(f"Moved: {file_path} to {new_file_path}")
+
         try:
             df.to_csv(os.path.join(data_path, csv_file), index=False)
+            move_files_to_staging(data_path)
+
         except Exception as e:
-            print(f"An error occurred: {e}")
+            print(f"An error occurred when saving to CSV: {e}")
+            return pd.DataFrame(columns=df.columns)
 
     # Save the data to an SQLite database if save_to_sql is True and df hasn't failed before
     if save_to_sql and not df.empty:
