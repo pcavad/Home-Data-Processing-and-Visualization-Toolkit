@@ -70,10 +70,12 @@ def datasetup_proxy(json_path):
 
 
 def load_data(data_path: str = 'data'
+              , db_file: str = 'carte.db'
               , csv_file: str = 'carte.csv'
               , json_file: str = 'datasetup.json'
               , credit_card_folders: list = ['paolo', 'gunda']
               , bank_account_folders: list = ['conto']
+              , load_from_sql: bool = False
               , with_update: bool = False
               , in_place: bool = False
               , save_to_sql: bool = False) -> pd.DataFrame:
@@ -86,10 +88,12 @@ def load_data(data_path: str = 'data'
 
     Args:
         data_path (str): The path to the directory containing the data files.
+        db_file (str): The SQLite file.
         csv_file (str): The name of the csv file
         json_file (str): The name of the json file
         credit_card_folders (list of str): the folders with credit card files (pdf)
         bank_account_folders (list of str): the folders with bank account files (pdf, xlsx)
+        load_from_sql (bool): if True load from .db file, if False load from .csv file.
         with_update (bool): Flag to update the data with new PDF files.
         in_place (bool): Flag to update the CSV file in place.
         save_to_sql (bool): Flag to save the data to an SQLite database.
@@ -104,6 +108,7 @@ def load_data(data_path: str = 'data'
     # Validate the arguments
     try:
         assert os.path.exists(data_path), f"data_path {data_path} does not exist."
+        assert os.path.exists(os.path.join(data_path, db_file)), f".db file does not exist."
         assert os.path.exists(os.path.join(data_path, csv_file)), f"CSV file does not exist."
         assert os.path.exists(os.path.join(data_path, json_file)), f"JSON file does not exist."
         for fold in credit_card_folders:
@@ -112,6 +117,7 @@ def load_data(data_path: str = 'data'
         for fold in bank_account_folders:
             assert os.path.exists(os.path.join(data_path, fold))\
                 , f"{fold} does not exist under {data_path}."
+        assert isinstance(load_from_sql, bool), 'load_from_sql must be a boolean value'
         assert isinstance(with_update, bool), 'with_update must be a boolean value'
         assert isinstance(in_place, bool), 'in_place must be a boolean value'
         assert isinstance(save_to_sql, bool), 'save_to_sql must be a boolean value'
@@ -120,15 +126,24 @@ def load_data(data_path: str = 'data'
         return pd.DataFrame(columns=COLUMNS)
 
     try:
-        # Load existing data from the CSV file
-        df = pd.read_csv(os.path.join(data_path, csv_file))
+        if load_from_sql:
+            # Load from SQLite database.
+            with sqlite3.connect(os.path.join(data_path, db_file)) as conn:
+                # Create a cursor object to execute SQL statements
+                c = conn.cursor()
+                query = 'SELECT * FROM dataset'
+                c.execute(query)
+                df = pd.read_sql_query(query, conn)
+        else:
+            # Load existing data from the CSV file
+            df = pd.read_csv(os.path.join(data_path, csv_file))
 
         # Convert date columns to datetime format
         df['data_acquisto'] = pd.to_datetime(df['data_acquisto'], format='%Y-%m-%d')
         df['data_registrazione'] = pd.to_datetime(df['data_registrazione'], format='%Y-%m-%d')
 
-    except FileNotFoundError:
-        print('CSV file not found.')
+    except Exception as e:
+        print(e)
         return pd.DataFrame(columns=COLUMNS)
 
     except Exception as e:
@@ -497,13 +512,56 @@ def load_data(data_path: str = 'data'
             --------
             pandas.DataFrame
                 The updated DataFrame with the 'descrizione_standardizzata' column.
+
             """
+
+            def regex_replace(value, find_descr, replace_descr):
+                """
+                Replace descriptions in the value based on regex patterns.
+                
+                Args:
+                - value (str): The input text value.
+                - find_descr (list of str): List of descriptions to find.
+                - replace_descr (list of str): List of descriptions to replace.
+                
+                Returns:
+                - str: The updated text value after replacements.
+                """
+                
+                # Create a list to store the modified values
+                modified_values = []
+                
+                # Iterate over each description and its corresponding replacement
+                for find, replace in zip(find_descr, replace_descr):
+                    # Generate the regex pattern
+                    pattern = re.compile('.*' + find + '.*')
+                    
+                    # Perform the regex search
+                    match = pattern.search(value)
+                    
+                    # If a match is found, replace the description
+                    if match:
+                        modified_values.append(pattern.sub(replace, value))
+                
+                # If no matches are found, return the original value
+                if not modified_values:
+                    return value
+                
+                # If multiple matches are found, raise an error
+                if len(modified_values) > 1:
+                    raise ValueError(f"Multiple regex matches found.")
+                
+                # Otherwise, return the modified value
+                return modified_values[0]
+
 
             try:
                 # Implement the regex to replace the descriptions in find_descr with replace_descr
-                find_descr_re = ['.*' + desc + '.*' for desc in find_descr]
-                df['descrizione_standardizzata'] = df.descrizione.replace(
-                    find_descr_re, replace_descr, regex=True)
+                df['descrizione_standardizzata'] = df.descrizione.apply(regex_replace, args=(find_descr, replace_descr))
+                # Earlier implementation:
+                # find_descr_re = ['.*' + desc + '.*' for desc in find_descr]
+                # df['descrizione_standardizzata'] = df.descrizione.replace(
+                #     find_descr_re, replace_descr, regex=True)
             except Exception as e:
                 print(f'Error \"{e}\" during the update of descrizione_standardizzata\nRolling back\n')
                 return pd.DataFrame(columns=df.columns)
@@ -538,6 +596,7 @@ def load_data(data_path: str = 'data'
                 df['classificazione'] = df.descrizione_standardizzata.apply(lambda x: find_key(classifier_dict, x))
             except UserWarning as u:
                 print(f'Error \"{u}\" during the update of classificazione\nRolling back\n')
+                print(f'The claffications are: {classifier_dict.keys()}')
                 print('-------------------------------------------------------------------')
                 return pd.DataFrame(columns=df.columns)
             except Exception as e:
@@ -645,39 +704,35 @@ def load_data(data_path: str = 'data'
             - staging (str): The staging folder.
             """
 
-            user_input = input(f"Move {file_path} to {new_file_path}? (y/n): ").strip().lower()
-            if user_input == 'y':
-
-                print(f'Moving files to {staging}')
-
-                staging_directory = os.path.join(directory, staging)
+            staging_directory = os.path.join(directory, staging)
             
-                # Ensure the 'staging' directory exists
-                if not os.path.exists(staging_directory):
-                    os.makedirs(staging_directory)
+            # Ensure the 'staging' directory exists
+            if not os.path.exists(staging_directory):
+                os.makedirs(staging_directory)
             
-                for root, dirs, files in os.walk(directory):
-                    # Skip the root directory itself and the 'staging' subdirectory
-                    if root != directory and staging not in root:
-                        # Extract the subfolder name relative to the main directory
-                        relative_subfolder = os.path.relpath(root, directory)
-                        
-                        # Create the same subfolder under 'staging' if it doesn't exist
-                        staging_subfolder = os.path.join(staging_directory, relative_subfolder)
-                        if not os.path.exists(staging_subfolder):
-                            os.makedirs(staging_subfolder)
-                        
-                        # Move files ending with '.pdf' or '.xlsx' to the staging subfolder
-                        for file in files:
-                            file_path = os.path.join(root, file)
-                            if file.endswith('.pdf') or file.endswith('.xlsx'):
-                                new_file_path = os.path.join(staging_subfolder, file)
-                                shutil.move(file_path, new_file_path)
-                                print(f"Moved: {file_path} to {new_file_path}")
+            for root, dirs, files in os.walk(directory):
+                # Skip the root directory itself and the 'staging' subdirectory
+                if root != directory and staging not in root:
+                    # Extract the subfolder name relative to the main directory
+                    relative_subfolder = os.path.relpath(root, directory)
+                    
+                    # Create the same subfolder under 'staging' if it doesn't exist
+                    staging_subfolder = os.path.join(staging_directory, relative_subfolder)
+                    if not os.path.exists(staging_subfolder):
+                        os.makedirs(staging_subfolder)
+                    
+                    # Move files ending with '.pdf' or '.xlsx' to the staging subfolder
+                    for file in files:
+                        file_path = os.path.join(root, file)
+                        if file.endswith('.pdf') or file.endswith('.xlsx'):
+                            new_file_path = os.path.join(staging_subfolder, file)
+                            shutil.move(file_path, new_file_path)
+                            print(f"Moved: {file_path} to {new_file_path}")
 
         try:
             df.to_csv(os.path.join(data_path, csv_file), index=False)
             move_files_to_staging(data_path)
+            print('CSV file saved!')
 
         except Exception as e:
             print(f"An error occurred when saving to CSV: {e}")
@@ -685,16 +740,24 @@ def load_data(data_path: str = 'data'
 
     # Save the data to an SQLite database if save_to_sql is True and df hasn't failed before
     if save_to_sql and not df.empty:
-        save_to_db(data_path)
+        try:
+            # Cast the dates as text for compatibility.
+            df['data_acquisto'] = df['data_acquisto'].dt.strftime('%Y-%m-%d')
+            df['data_registrazione'] = df['data_registrazione'].dt.strftime('%Y-%m-%d')
+            save_to_db(df)
+        except Exception as e:
+            print(f"An error occurred when saving to CSV: {e}")
+            return pd.DataFrame(columns=df.columns)
 
     return df
 
 
-def save_to_db(data_path: str = 'data', csv_file: str = 'carte.csv', db_file: str = 'carte.db'):
+def save_to_db(df: pd.DataFrame, data_path: str = 'data', csv_file: str = 'carte.csv', db_file: str = 'carte.db'):
     '''
     Save the data from a CSV file to a SQLite database.
 
     Args:
+        df (pd.DataFrame): The dataframe to save.
         data_path (str): The path to the directory containing the CSV file.
         csv_file (str): The csv file name.
         db_file (str): The SQL file name.
@@ -704,9 +767,6 @@ def save_to_db(data_path: str = 'data', csv_file: str = 'carte.csv', db_file: st
     db_path = os.path.join(data_path, db_file)
 
     try:
-        # Read the data from the CSV file into a pandas DataFrame
-        df = pd.read_csv(csv_path)
-
         # Establish a connection to the SQLite database
         with sqlite3.connect(db_path) as conn:
             # Create a cursor object to execute SQL statements
@@ -725,6 +785,8 @@ def save_to_db(data_path: str = 'data', csv_file: str = 'carte.csv', db_file: st
 
             # Commit the changes to the database
             conn.commit()
+
+            print('SQL file saved!')
 
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -894,6 +956,7 @@ def describe_analysis(transactions_df: pd.DataFrame,
     # Assertions to validate the inputs
     try:
         assert isinstance(transactions_df, pd.DataFrame), 'Invalid DataFrame input'
+        assert isinstance(current_date, datetime), 'Invalid datetime input'
         assert is_valid_locale(locale_setting), f"{locale_setting} is not a valid locale"
         assert isinstance(display_html, bool), 'Display format must be a boolean'
     except AssertionError as e:
@@ -977,7 +1040,7 @@ def describe_analysis(transactions_df: pd.DataFrame,
         """Display the analysis results in HTML format."""
         # styler for HTML rendering
         df0_styler = df_describe.style.set_table_attributes("style='display:inline'")\
-            .set_caption(f'<b>Statistiche ultimo anno:<br>da {start_current_month_minus_one_year} a {end_previous_month}</b>')\
+            .set_caption(f'<b>Da {start_current_month_minus_one_year} a {end_previous_month}</b>')\
             .format('{:,.2f}')
         df1_styler = df_last_months.style.set_table_attributes("style='display:inline'")\
             .set_caption('<b>Ultimi 8 mesi</b>')\
