@@ -1,0 +1,1468 @@
+{
+    "classifications": [
+        {
+            "name": "spesa",
+            "standardized_descriptions": [
+                {
+                    "name": "ALDI",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "ALDI"
+                        }
+                    ]
+                },
+                {
+                    "name": "ANTICO FRANTOIO TAVIAN VADO LIGURE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BAR BESIO SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BASTONI ALESSANDRO CAIRO MONTENO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BOTTIGLIERIA BERTA",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "BOTTIGLIERIA"
+                        },
+                        {
+                            "name": "bottiglieria"
+                        }
+                    ]
+                },
+                {
+                    "name": "CALLERI ROBERTO ALBISSOLA MAR",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CAM SRL FRABOSA SOTTA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CARREFOUR",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "CARREFOUR"
+                        }
+                    ]
+                },
+                {
+                    "name": "CONAD",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "CONAD"
+                        },
+                        {
+                            "name": "conad"
+                        }
+                    ]
+                },
+                {
+                    "name": "COOP",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "COOP"
+                        },
+                        {
+                            "name": "coop"
+                        }
+                    ]
+                },
+                {
+                    "name": "DESPAR VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "EVERLI MILANO",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "GENOVA FOOD GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "GROSMARKET",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "SOGEGROSS"
+                        }
+                    ]
+                },
+                {
+                    "name": "I PRONTI DI LUCA SAS GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "IDEALPAN SNC ALBISSOLA MAR",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "IN'S MERCATO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "JUSTEAT",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "JUSTEATITAL"
+                        },
+                        {
+                            "name": "JUST EAT"
+                        }
+                    ]
+                },
+                {
+                    "name": "LIDL",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "LIDL"
+                        }
+                    ]
+                },
+                {
+                    "name": "LINEA AZZURRA ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MONDIAL FOOD MARKET SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "NORMA ENRICO ROSTICCERIA BUSCA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "OTTONELLO GIUSEPPE STELLA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAM",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "ARIMONDO"
+                        },
+                        {
+                            "name": "PAM"
+                        },
+                        {
+                            "name": "arimondo"
+                        },
+                        {
+                            "name": "supermercato pam"
+                        },
+                        {
+                            "name": "pam local"
+                        }
+                    ]
+                },
+                {
+                    "name": "PANI & GRANI SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PESTOBENE GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "RIVIEREPESCA SRL ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "S.A.R.I.A. S.R.L. ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SOC AGR DI LASPESA ALBISSOLA MAR",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SumUp  *MR Gelo di Mahr Albisola Supe",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "GIORDANO VINI",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "PAYPAL \\*G V SPA"
+                        }
+                    ]
+                },
+                {
+                    "name": "CORSICO FOOD CORSICO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CORSICO FOOD KIOSK CORSICO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "A CA' DU FRITU DI CAPPEL ALBISOLA CAPO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "OK MARKET",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "ok market"
+                        },
+                        {
+                            "name": "OK MARKET"
+                        }
+                    ]
+                },
+                {
+                    "name": "PANI&GRANI SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CASA DEL FORMAGGIO",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "CASA DEL FORMAGGIO"
+                        },
+                        {
+                            "name": "casa del formaggio"
+                        }
+                    ]
+                },
+                {
+                    "name": "DAMONTE",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "DAMONTE"
+                        },
+                        {
+                            "name": "damonte"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ristoranti",
+            "standardized_descriptions": [
+                {
+                    "name": "AI TORCHI DI MALANDRA FINALE LIGURE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "AL VECIO FORNER VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ANGIO  BAR VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ART & FOOD SRL VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ATO S.A.S. DI HU XIXI.. VARESE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "AUTOGRILL",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "AUTOGRILL"
+                        }
+                    ]
+                },
+                {
+                    "name": "BAGNI LIDO AZZURRO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BAGNI LIDO AZZURRO DI BA ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BAGNI ONDINA ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BAGNI PINO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BAGNI SORRISO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BAR LA TARTANA GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PILAR",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "PILAR"
+                        }
+                    ]
+                },
+                {
+                    "name": "BIASUTTI VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "C'ERA UNA VOLTA RISTO' VARESE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CAMILLO S BAKERY VERCELLI",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "COPACABANON NICE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "EL REFOLO - VENEZIA VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ESCA SRL ALASSIO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FIORE RISTORANTE PIZZERI ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FOOD4LOVE SRL MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "GI. EMME SNC DI GHISOLFI SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "HARENA BLANCA ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "I TRE MERLI RISTORANTE GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "LA CARAVELLA DI RENGA ALBISSOLA MAR",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "LA FORNACE DI BARBABLU SA VADO LIGURE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "LA MALGA TIROLESE ANDRIANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "LEAF",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "LEAF"
+                        }
+                    ]
+                },
+                {
+                    "name": "LI SHANYUE MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "LO SCORRETTO GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "LUNA SENTADA SRL VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MERCATORIENTALEGENOVA GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MUSAZZO SRL VERCELLI",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MYCHEF VYTA MILANO CENTR MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "NONUNOMENO BISTROT SOCIA FINALE LIGURE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "OSTERIA L'ANCIUA MATTA ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PIZZIUM SPA VIALE AND.. MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "RAMENAMANO MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "RIST AL GIARDINETTO VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "RISTORANTE CAPO TORRE CELLE LIGURE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "RISTORANTE IL SORRISO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SAN GIORGIO CAFE' - D' VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SARRI IMPERIA",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "HORECA DI PESCE ALESSA IMPERIA"
+                        }
+                    ]
+                },
+                {
+                    "name": "SIR ANDREW'S CAFE DI R ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SIR ANDREW'S CAFE DI RONC ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SumUp  *Trattoria in c Albisola supe",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "TRATTORIA CORTE SCONTA VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ULTIMA SPIAGGIA ALBISOLA ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SAGAMI MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "TERRAZZA VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "VIVA DI PENZO MATTIA VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "NUN-TASTEOFMIDDLEEAST MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BUFFET GENOVA PRINCIPE GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "DINASTIE SRLS ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MARIOLINA DI MARZIA GRECO ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ANTICO CARLONE ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "AMERINA LA PIZZETTA ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "TRATTORIA SORA LELLA ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ENOTECA GUERRINI ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "RENATO AL GHETTO ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "TRATTORIA SABBIONEDA MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ROVIDA SRL MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SAPORI & DINTORNI 7145 MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MATTIA SOCIETA  A RESPON MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "BENVENUTI AL SUD ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "ULTIMA SPIAGGIA ALBISO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "STRANI SRL VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAOLINO TRATTORIA VERCELLI",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "VAPENSIERO SAS DI LUCA G GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "YUMCHA MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "JUST CORSO COMO MILANO",
+                    "web": false,
+                    "descriptions": []
+                }
+            ]
+        },
+        {
+            "name": "shopping",
+            "standardized_descriptions": [
+                {
+                    "name": "BOOKSHOP ELECTA ARSEN. VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "IKEA",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "IKEA"
+                        }
+                    ]
+                },
+                {
+                    "name": "LAMBERTI ALBERTO SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CALZATURE TOTO' ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CATAWIKI ASSEN",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CENTROCOPIE E SERVIZI SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "GENOVA HFB ECO GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "KIKO",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "KIKO"
+                        }
+                    ]
+                },
+                {
+                    "name": "INTERFLORA ITALIA SPA ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "IPERSOAP ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MGP*Bookingkit 0402593 L-1125 LUXEMB",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "NEXI PAGAMENTI PAGOPA MILANO",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "ORAFI IN ALASSIO SNC ALASSIO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *2CO.COM 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *ALOISDALLMA 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *ALOISDALLMA 892135130",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *ARUBA SPA 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *BLURB 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *BLURB 402-935-7733",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *CALZEDONIAS 0458613610",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *CALZEDONIAS 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *CENTOCOSEDI 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *EBAY IT 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *FASTWEB SPA 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *FITFLOP LTD 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *HMHENNESMAU 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *INTERFLORAI 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *LEROYMERLIN 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *MANOMANO 44183 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *MIXCHOSE MIXCH 4029357733",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *PAYPAL 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *SHEIN COM 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *TREEDOM SRL 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *VILLEROYBOC 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *VODAFONEITA 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *WEEKDAY 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "DECATHLON",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "DECATHLON"
+                        }
+                    ]
+                },
+                {
+                    "name": "TNT GLOBAL EXPRESS SPA HOOFDDORP",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *MODIVO S 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "AZ. AGRICOLA VIVAIO PA ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CORSICO HFB ECO CORSICO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PIU'ME ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *UNIEURO S P 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *MEDIAMARKET 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *EDITORIALED 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "wang xujie amici bazar",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "wang xujie amici bazar"
+                        }
+                    ]
+                },
+                {
+                    "name": "AZ. AGRICOLA VIVAIO PASTO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "TASKER ON TASKRABBIT MILTON KEYNES",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *ADIDASITALY 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "KINDLE",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "Kindle"
+                        }
+                    ]
+                },
+                {
+                    "name": "TEZENIS",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "TEZENIS  F E M SRL MILANO"
+                        }
+                    ]
+                },
+                {
+                    "name": "NORTON SOFT",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "NORTON SOFT"
+                        }
+                    ]
+                },
+                {
+                    "name": "AMAZON",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "AMAZON"
+                        },
+                        {
+                            "name": "Amazon"
+                        },
+                        {
+                            "name": "AMZ"
+                        }
+                    ]
+                },
+                {
+                    "name": "BRICOFER",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "BRICOFER"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "case",
+            "standardized_descriptions": [
+                {
+                    "name": "WWW.ALLIANZDIRECT.IT MILANO",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "NETFLIX",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "PAYPAL \\*NETFLIX"
+                        }
+                    ]
+                },
+                {
+                    "name": "NOW TV",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "PAYPAL \\*NOW"
+                        }
+                    ]
+                },
+                {
+                    "name": "PAYPAL *7D252 ENT 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *33BC4 CINEMA 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "POSTA",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "postale"
+                        }
+                    ]
+                },
+                {
+                    "name": "F24",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "f24"
+                        },
+                        {
+                            "name": "F24 TELEMATICO"
+                        }
+                    ]
+                },
+                {
+                    "name": "BANCOMAT ATM",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "atm"
+                        }
+                    ]
+                },
+                {
+                    "name": "imposta di bollo",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "imposta di bollo"
+                        }
+                    ]
+                },
+                {
+                    "name": "competenze",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "competenze"
+                        },
+                        {
+                            "name": "COMPETENZE"
+                        }
+                    ]
+                },
+                {
+                    "name": "CONDOMINIO VIA SETTEMBRINI",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "CONDOMINIO VIA SETTEMBRINI"
+                        }
+                    ]
+                },
+                {
+                    "name": "addebito m.av./r.av.",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "addebito m\\.av\\./r\\.av\\"
+                        }
+                    ]
+                },
+                {
+                    "name": "PAGAMENTO M.AV./R.AV.",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "orto sociale",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "orto sociale"
+                        }
+                    ]
+                },
+                {
+                    "name": "FABBRICAZIONI IDRAULICHE ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MANDOTTI MI",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "mandotti"
+                        },
+                        {
+                            "name": "MANDOTTI"
+                        }
+                    ]
+                },
+                {
+                    "name": "FABBRO URGENZA MI",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "VS.DISP. RIF. MBAT26100612/00467708 FAVORE HANNA COPPO NR. BONIFICO SEPA: MBAT26100612 RIF. BANCA ORDINANTE: 5034004245423314480160001795IT IBAN: DE97100110012626742063 END TO END ID: CAUSALE: rimborso serratura"
+                        }
+                    ]
+                },
+                {
+                    "name": "compleanno",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "compleanno"
+                        },
+                        {
+                            "name": "VS.DISP. RIF. MBAT82821064/00620026"
+                        }
+                    ]
+                },
+                {
+                    "name": "IMP.BOLLO CC LR EX ART.13 C.2-BIS ALL.A/I DPR 642/72",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "LAVAST MIELE",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "VS.DISP. RIF. MBAT61685700/00150771"
+                        }
+                    ]
+                },
+                {
+                    "name": "MATERASSO ALBI",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "VS.DISP. RIF. MBBT01484880/00334743"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "utenze",
+            "standardized_descriptions": [
+                {
+                    "name": "WWW.ENIGASLUCE.COM ROMA",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *PLENITUDE 3498320801",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "ENI",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "eni s\\.p\\.a\\"
+                        },
+                        {
+                            "name": "SDD CORE: 8002118100000180905269"
+                        },
+                        {
+                            "name": "SDD CORE: 8002118100000180905277"
+                        }
+                    ]
+                },
+                {
+                    "name": "FASTWEB",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "fastweb"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "viaggi",
+            "standardized_descriptions": [
+                {
+                    "name": "ATM-PARCHEGGIO PISANI MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FAMAGOSTA M2 MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "INTERPARKING ITALIA SRL VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "TRENITALIA",
+                    "web": true,
+                    "descriptions": [
+                        {
+                            "name": "TRENITALIA"
+                        }
+                    ]
+                },
+                {
+                    "name": "CASTELLO D'ALBERTIS GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CENTRE DES MONUMENTS N PARIS CEDEX 0",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "LA CORTE DEI DOGI VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PALAZZO DUCALE VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *AIRBNB  HM2S9F 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *TICKETONESP 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *TICKETONESP 35314369001-1",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *VIVATICKETS 35314369001",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *VIVATICKETS 892234",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "QUIRINALE.IT ROMA",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "RETAIL GROUP SPA VF53 VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "TERME DI GENOVA GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "TICKETING.INTERNAZIONA ROMA",
+                    "web": true,
+                    "descriptions": []
+                },
+                {
+                    "name": "TVM S.LUCIA 4 VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "VELA SPA PIETA' VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "WWW.TICKETONE.IT MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "JULIA TRAVEL HOSPITALET DE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FAMAGOSTA PARK MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "RESIDENZA IL GIGLIO DU ROMA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "MILANO NORD CADORNA  10 MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CAIAZZO M2 MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "VE.LA. S.P.A. VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "STAZIONE ROYAL GARAGE GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "HOTEL CA' FORMENTA VENEZIA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "VILLA DEL PRINCIPE GENOVA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FONDAZIONE ACHILLE CASTIGLIONI",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "FONDAZIONE ACHILLE CASTIGLIONI"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "auto",
+            "standardized_descriptions": [
+                {
+                    "name": "SONEGO ELETTRAUTO SAVONA",
+                    "web": false,
+                    "descriptions": []
+                }
+            ]
+        },
+        {
+            "name": "carburante",
+            "standardized_descriptions": [
+                {
+                    "name": "blue fuel",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "blue fuel"
+                        }
+                    ]
+                },
+                {
+                    "name": "Europam fuel",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "europam"
+                        }
+                    ]
+                },
+                {
+                    "name": "ENI fuel",
+                    "web": false,
+                    "descriptions": [
+                        {
+                            "name": "eni 01377"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "salute",
+            "standardized_descriptions": [
+                {
+                    "name": "CENTRO MEDICO SAN NICO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FARMACIA DELLA CONCORDIA ALBISSOLA MAR",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FARMACIA SAN NICOLO ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FARMACIA SAN NICOLO SAS ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FARMACIA STELLA MARIS ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "OTTICA ROCCHETTI SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "PAYPAL *FARMSANTORO FA 35314369001",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "SAN GIOVANNI SAVONA SAVONA",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "CENTRO MEDICO POLISPEC ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "STUDI MEDICI DOTT PASS VERCELLI",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "FARMACIA SCARLATTI SNC MILANO",
+                    "web": false,
+                    "descriptions": []
+                },
+                {
+                    "name": "IL CAPRICCIO SNC DI CU ALBISOLA SUPE",
+                    "web": false,
+                    "descriptions": []
+                }
+            ]
+        }
+    ]
+}
