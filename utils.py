@@ -547,9 +547,17 @@ def load_data(data_path: str = 'data'
                 if not modified_values:
                     return value
                 
-                # If multiple matches are found, raise an error
+                # If multiple matches are found
                 if len(modified_values) > 1:
-                    raise ValueError(f"Multiple regex matches found.")
+                    # If multiple matches are found under the same standardized description
+                    # Then we can accept is and go ahead
+                    if all(elem == modified_values[0] for elem in modified_values):
+                        return modified_values[0]
+                    else:
+                        # If multiple matches are found under different standardized descriptions
+                        # The we need to stop processing
+                        print(f"Conflicting regex matches found: {modified_values}")
+                        raise ValueError (f"Multiple regex matches found.")
                 
                 # Otherwise, return the modified value
                 return modified_values[0]
