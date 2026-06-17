@@ -21,7 +21,7 @@ A robust, production-grade Python utility designed for aggregating, processing, 
 /Casa
 ├── data/
 │   ├── transazioni.db          # Main SQLite storage engine for financial records
-│   ├── data_dict.json          # Dictionary schema configuration mapping transaction states
+│   ├── data_dict.json          # Dictionary to add transactions which haven't been parsed from card/bank reports
 │   └── metadata_tinydb.json    # TinyDB NoSQL file managing merchant/category classification rules
 ├── env/                        # Python virtual environment
 ├── report/                     # Automated analysis output directory
